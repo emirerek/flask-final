@@ -15,7 +15,7 @@ db_path = path.join(src_dir, "instance", "site.db")
 app.config["SECRET_KEY"] = "5791628bb0b13ce0c676dfde280ba245"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + db_path
 
-convention = {
+convention = { # SQLite ile Alembic calismasi icin
     "ix": 'ix_%(column_0_label)s',
     "uq": "uq_%(table_name)s_%(column_0_name)s",
     "ck": "ck_%(table_name)s_%(constraint_name)s",
