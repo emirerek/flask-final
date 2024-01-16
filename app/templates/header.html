@@ -1,0 +1,53 @@
+<div class="pre-header">
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-8 col-sm-8 col-7">
+            <ul class="info">
+            <li><a href="mailto:digimedia@company.com"><i class="fa fa-envelope"></i>digimedia@company.com</a></li>
+            <li><a href="#"><i class="fa fa-phone"></i>010-020-0340</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-5">
+            <ul class="social-media">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+</div>
+<header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+        <div class="row">
+        <div class="col-12">
+            <nav class="main-nav">
+            <a href="{{ url_for('index') }}" class="logo">
+                <img src="{{ url_for('static', filename='images/logo-v3.png') }}" alt="">
+            </a>
+            <ul class="nav">
+                <li class="scroll-to-section"><a href="{{ url_for('index') }}">About</a></li>
+                <li class="scroll-to-section"><a href="{{ url_for('services') }}">Services</a></li>
+                <li class="scroll-to-section"><a href="{{ url_for('projects') }}">Projects</a></li>
+                <li class="scroll-to-section"><a href="{{ url_for('blog') }}">Blog</a></li>
+                <li class="scroll-to-section"><a href="{{ url_for('contact') }}">Contact</a></li>
+                {% if current_user.is_authenticated and current_user.is_admin == True %}
+                <li class="scroll-to-section"><a href="{{ url_for('admin.index') }}">Admin</a></li>
+                <li class="scroll-to-section"><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% elif current_user.is_authenticated %}
+                <li class="scroll-to-section"><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                <li class="scroll-to-section"><a href="{{ url_for('login') }}">Login</a></li>
+                <li class="scroll-to-section"><a href="{{ url_for('register') }}">Register</a></li>
+                {% endif %}
+                <li class="scroll-to-section"><div class="border-first-button"><a href="{{ url_for('contact') }}">Free Quote</a></div></li> 
+            </ul>        
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            </nav>
+        </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+</head>
+<body>
+  <div class="col-md-6 offset-md-3 px-2 py-5">
+    <h2>Register</h2>
+    <p class="lead">Create your account</p>
+    <a href="{{ url_for('index') }}">Back to the main page.</a>
+  </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form action="{{ url_for('auth.register') }}" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+          {{ form.username.label(class="form-label") }} 
+          {{ form.username(class="form-control") }} 
+          {% if form.username.errors %}
+            <div class="invalid-feedback">
+              {{ form.username.errors[0] }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          {{ form.email.label(class="form-label") }} 
+          {{ form.email(class="form-control") }} 
+          {% if form.email.errors %}
+            <div class="invalid-feedback">
+              {{ form.email.errors[0] }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          {{ form.password.label(class="form-label") }} 
+          {{ form.password(class="form-control") }} 
+          {% if form.password.errors %}
+            <div class="invalid-feedback">
+              {{ form.password.errors[0] }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          {{ form.pass_confirm.label(class="form-label") }} 
+          {{ form.pass_confirm(class="form-control") }} 
+          {% if form.pass_confirm.errors %}
+            <div class="invalid-feedback">
+              {{ form.pass_confirm.errors[0] }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="mb-3">{{ form.submit(class="btn btn-primary btn-lg") }}</div>
+        <div class="mb-3" style="display: none"></div>
+      </form>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
