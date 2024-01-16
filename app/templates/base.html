@@ -23,6 +23,9 @@
     {% include "header.html" %}
     {% block content %}
     {% endblock %}
+    {% if url_for(request.endpoint) != url_for("contact") %}
+    {% include "free-quote.html" %}
+    {% endif %}
     {% include "footer.html" %}
     <script src="{{ url_for('static', filename='jquery/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>

@@ -1,4 +1,6 @@
 from flask import Flask
+from flask import request, redirect, url_for
+from flask_login import current_user
 from sqlalchemy import MetaData
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -35,11 +37,19 @@ from app import views, models
 from app.models import Project, User, Quote, Contact, BlogPost
 
 admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Quote, db.session))
 admin.add_view(ModelView(Project, db.session))
-admin.add_view(ModelView(Contact, db.session))
 admin.add_view(ModelView(BlogPost, db.session))
+admin.add_view(ModelView(Quote, db.session))
+admin.add_view(ModelView(Contact, db.session))
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+@app.before_request
+def before_request():
+    if "/admin" in request.url:
+        if current_user.is_authenticated and current_user.is_admin:
+            return None
+        else:
+            return redirect(url_for("login"))
