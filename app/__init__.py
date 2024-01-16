@@ -47,7 +47,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 @app.before_request
-def before_request():
+def check_admin():
     if "/admin" in request.url:
         if current_user.is_authenticated and current_user.is_admin:
             return None

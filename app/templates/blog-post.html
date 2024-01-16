@@ -4,16 +4,15 @@
 {% endblock %}
 {% block content %}
 <div class="container page-section">
-    <div class="col-lg-12">
-        <h2>
-            {{ blog_post.title }}
-        </h2>
-        <p>
-            By: {{ blog_post.author }} at {{ blog_post.date }} 
-        </p>
-        <h6>
-            {{ blog_post.content }}
-        </h6>
+    <div class="card mb-3 col-lg-12">
+        <img src="{{ url_for('static', filename=blog_post.image_url) }}" class="card-img-top row-md-4">
+        <div class="card-body">
+            <span class="category">{{ blog_post.category }}</span>
+            <h1 class="card-title" style="margin: 8px 0;">{{ blog_post.title }}</h2>
+            <h6 class="card-text text-body-secondary">By: {{ blog_post.author }} at {{ blog_post.date }}</p>
+            <hr>
+            <h6 class="card-text">{{ blog_post.content }}</h6>
+        </div>
     </div>
 </div>
 {% endblock %}
